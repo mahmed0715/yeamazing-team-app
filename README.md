@@ -2,6 +2,8 @@
 
 **TeamHub** is a full-stack team collaboration platform designed to streamline communication and task management within teams. It features real-time 1-on-1 messaging, file sharing, and robust role-based access control for Admins, Managers, and Members.
 
+# Demo video
+https://www.loom.com/share/631295b050d3447a9206e98f9c771fcc
 ---
 
 ## 🚀 Features
@@ -39,7 +41,7 @@
 
 ## Deployed App
 
-https://yeamazing-chat-next-full-stack.onrender.com/
+https://yeamazing-team-app.onrender.com/ 
 
 ## Listed Features
 
