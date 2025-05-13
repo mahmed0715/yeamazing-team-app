@@ -48,7 +48,7 @@ const useRoutes = (currentUser?: User | null) => {
 
     baseRoutes.push({
       label: "Logout",
-      onClick: () => signOut({}),
+      onClick: () => signOut(),
       href: "#",
       icon: HiArrowLeftOnRectangle,
     });
