@@ -7,6 +7,7 @@
 ## 🚀 Features
 
 - 🔐 **Role-Based Access Control**
+- Admin will have an extra menu item in sidebar for user management, no other user can access that, URL : `/admin/users`
 
   - Supports `Admin`, `Manager`, and `Member` roles
   - Admins can assign and manage user roles
@@ -24,7 +25,7 @@
 - 📤 **File Upload**
 
   - Upload and share **images, documents, and PDFs**
-  - Supports third-party storage providers : Cloudinary, using next-cloudinary
+  - Supports third-party storage providers: Cloudinary, using next-cloudinary
 
 - ✅ **Input Validation**
 
@@ -76,7 +77,7 @@ Users can upload files and images to the application using the Cloudinary CDN se
 ### 9. Client Form Validation and Handling using react-hook-form and zod
 
 Form validation and handling on the client-side are managed using the powerful `react-hook-form` library with ZOD
-Api routes are valiadted using ZOD as well.
+Api routes are validated using ZOD as well.
 
 ### 10. Server Error Handling with react-toast
 
@@ -118,7 +119,7 @@ Learn how to manage and handle relations between server and child components in 
 
 The application supports the creation and management of chats.
 
-### 20. Admin panel: Mange users role, admin only, RBACK
+### 20. Admin panel: Manage users role, admin only, RBACK
 
 The application supports the management of user roles.
 
@@ -131,15 +132,15 @@ The application supports the management of user roles.
 - **Frontend:** Next.js (App Router)
 - **Backend:** Node.js, Next.js Route Handlers
 - **Database:** PostgreSQL + Prisma
-- **Auth:** NextAuth.js (with Google & Credentials login)
-- **Real-Time:** Socket.IO or Pusher
+- **Auth:** NextAuth.js (Google)
+- **Real-Time:** Pusher
 - **Validation:** Zod
-- **File Upload:** AWS S3 or Cloudinary
+- **File Upload:** Cloudinary
 
 ### Cloning the repository
 
 ```shell
-git clone https://github.com/mahmed0715/realtime-nextjs-chat
+git clone https://github.com/mahmed0715/yeamazing-team-app
 ```
 
 ### Install packages
@@ -166,6 +167,7 @@ CLOUDINARY_API_SECRET = "aa";
 GOOGLE_CLIENT_ID = "56110261084-aa.apps.googleusercontent.com";
 GOOGLE_CLIENT_SECRET = "GOCSPX-aa";
 ```
+# Please ask for the real env variabales used in the deployed version.
 
 ### Setup Prisma
 
@@ -177,6 +179,10 @@ npx prisma db push
 ### Start the app
 
 ```shell
+npm run build
+npm start
+
+# for develoment 
 npm run dev
 ```
 
