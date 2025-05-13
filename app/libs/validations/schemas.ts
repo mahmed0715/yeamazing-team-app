@@ -106,7 +106,7 @@ export const registerSchema = z.object({
 });
 export const updateProfileSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  image: z.string().url("Invalid image URL"),
+  image: z.string().url("Invalid image URL").nullable().optional(),
 });
 
 export const updateUserRoleSchema = z.object({
