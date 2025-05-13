@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  MEMBER
+}
+
+model User {
+  id             String    @id @default(uuid())
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  role           UserRole  @default(MEMBER) // NEW FIELD
+
+  accounts      Account[]
+  messages      Message[]                 @relation("UserMessages")
+  seenMessages  SeenMessage[]
+  conversations ConversationParticipant[]
+  MessageSeen   MessageSeen[]
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Conversation {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  lastMessageAt DateTime @default(now())
+  name          String?
+  isGroup       Boolean?
+
+  messages     Message[]
+  participants ConversationParticipant[] // Join table for users in conversation
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  body      String?
+  image     String?
+  createdAt DateTime @default(now())
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  senderId String
+  sender   User   @relation("UserMessages", fields: [senderId], references: [id], onDelete: Cascade)
+
+  seenBy      SeenMessage[] // Join table for who has seen the message
+  MessageSeen MessageSeen[]
+}
+
+model ConversationParticipant {
+  id             String @id @default(uuid())
+  userId         String
+  conversationId String
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, conversationId])
+}
+
+model SeenMessage {
+  id        String @id @default(uuid())
+  userId    String
+  messageId String
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, messageId])
+}
+
+model MessageSeen {
+  id        String @id @default(uuid())
+  messageId String
+  userId    String
+
+  message Message @relation(fields: [messageId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([messageId, userId])
+}
