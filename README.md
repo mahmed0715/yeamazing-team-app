@@ -8,6 +8,7 @@
 
 - 🔐 **Role-Based Access Control**
 - Admin will have an extra menu item in sidebar for user management, no other user can access that, URL : `/admin/users`
+- Please login as admin user: email/pwd: admin@gmail.com / admin
 
   - Supports `Admin`, `Manager`, and `Member` roles
   - Admins can assign and manage user roles
